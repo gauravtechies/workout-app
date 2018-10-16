@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WorkoutApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> <link rel="stylesheet" href="/css/bootstrap.css">
+   
+  </head>
+
+  <body>
+  <header role="banner">
+     <nav class="navbar navbar-inverse">
+      
+          <div class="navbar-header">
+          <%= link_to "Athletes Den", root_path, class: "navbar-brand" %>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Page 1</a></li>
+            <li><a href="#">Page 2</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+          <% if current_user %>
+               <li><%=link_to "My lounge", user_exercises_path(current_user) %></li>
+                <li class="logout btn-md btn-danger"><%= link_to("logout", destroy_user_session_path ,method: :delete ) %></li>
+            <% else %>
+                <li><%= link_to "Sign In", new_user_session_path %></li>
+                <li class="margin-right"><%= link_to "Sign Up", new_user_registration_path %></li>
+            <% end %>
+          </ul>
+        
+      </nav> 
+</header>
+ 
+   <div class="container">
+    <%= yield %>
+    </div>
+  </body>
+</html>
