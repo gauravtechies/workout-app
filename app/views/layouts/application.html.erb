@@ -5,8 +5,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> <link rel="stylesheet" href="/css/bootstrap.css">
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application'%>
    
   </head>
 
@@ -25,7 +25,7 @@
           <ul class="nav navbar-nav navbar-right">
           <% if current_user %>
                <li><%=link_to "My lounge", user_exercises_path(current_user) %></li>
-                <li class="logout btn-md btn-danger"><%= link_to("logout", destroy_user_session_path ,method: :delete ) %></li>
+                <li class="logout"><%= link_to("logout", destroy_user_session_path ,method: :delete ) %></li>
             <% else %>
                 <li><%= link_to "Sign In", new_user_session_path %></li>
                 <li class="margin-right"><%= link_to "Sign Up", new_user_registration_path %></li>
