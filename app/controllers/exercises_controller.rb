@@ -13,12 +13,18 @@ class ExercisesController < ApplicationController
     def create
         @exercise=current_user.exercises.new(exercise_params)
         if @exercise.save
-            flash[:notice] = "Exercise_has_been_created"
+            flash[:success] = "Exercise has been created"
             redirect_to [current_user, @exercise]
         else
             flash.now[:alert]="Exercise has not been created"
             render :new
         end
+    end
+    def destroy
+        @exercise=Exercise.find(params[:id]) 
+        @exercise.destroy
+        flash[:notice] = "Exercise deleted"
+        redirect_to user_exercises_path
     end
     
 
