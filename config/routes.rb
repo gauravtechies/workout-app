@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     collection do 
       post :search, to: 'dashboards#search'
     end    
-
   end
+
+  resources :friendships,only: [:create]
 end

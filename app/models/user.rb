@@ -1,18 +1,22 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+devise :database_authenticatable, :registerable,
+        :recoverable, :rememberable, :validatable
 
-  has_many :exercises
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-
-
+has_many :exercises
+validates :first_name, presence: true
+validates :last_name, presence: true
+has_many :friendships
+has_many :friends, through: :friendships, class_name: "User"
   def full_name
       [first_name,last_name].join(" ")
   end
-
+  
+  def follows_or_same?(new_friend)
+    friendships.map(&:friend).include?(new_friend) || self == new_friend
+  end 
+  
   def self.search_by_name(name)
       names_array=name.split(' ')
       if names_array.size===1
