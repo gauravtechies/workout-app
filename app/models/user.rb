@@ -10,6 +10,7 @@ validates :last_name, presence: true
 has_many :friendships
 has_many :friends, through: :friendships, class_name: "User"
 has_one :room
+has_many :messages
 after_create :create_chatroom
   def full_name
       [first_name,last_name].join(" ")
@@ -35,7 +36,7 @@ after_create :create_chatroom
 
   private
   def create_chatroom
-    hyphenated_username=self.full_namme.split.join('-')
+    hyphenated_username=self.full_name.split.join('-')
     Room.create(name: hyphenated_username,user_id: self.id)
   end
 end
