@@ -9,6 +9,8 @@ validates :first_name, presence: true
 validates :last_name, presence: true
 has_many :friendships
 has_many :friends, through: :friendships, class_name: "User"
+has_one :room
+after_create :create_chatroom
   def full_name
       [first_name,last_name].join(" ")
   end
@@ -25,5 +27,15 @@ has_many :friends, through: :friendships, class_name: "User"
       else
         where('first_name LIKE ? or first_name LIKE ? or last_name LIKE ? or last_name LIKE ? ',"%#{names_array[0]}%","%#{names_array[1]}%","%#{names_array[0]}%","%#{names_array[1]}%").order(:first_name)
       end
+  end
+
+  def current_friendship(friend)
+    friendships.where(friend: friend).first 
+  end
+
+  private
+  def create_chatroom
+    hyphenated_username=self.full_namme.split.join('-')
+    Room.create(name: hyphenated_username,user_id: self.id)
   end
 end

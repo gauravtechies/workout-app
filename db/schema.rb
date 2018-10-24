@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_23_113638) do
+ActiveRecord::Schema.define(version: 2018_10_24_080455) do
 
   create_table "exercises", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "duration_in_min"
@@ -31,6 +31,14 @@ ActiveRecord::Schema.define(version: 2018_10_23_113638) do
     t.index ["user_id"], name: "index_friendships_on_user_id"
   end
 
+  create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_rooms_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -46,4 +54,5 @@ ActiveRecord::Schema.define(version: 2018_10_23_113638) do
   end
 
   add_foreign_key "exercises", "users"
+  add_foreign_key "rooms", "users"
 end
