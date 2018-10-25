@@ -1,11 +1,102 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
-  .logout{
-    margin-right: 33px !important;
-    color: aliceblue !important;
-  }
 
-  .margin-right{
-    margin-right: 33px !important;
-  }
+
+.alert-error {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+  text-align: left;
+}
+
+.alert-alert,
+#error_explanation {
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442;
+  text-align: left;
+}
+
+.alert-success {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+  text-align: left;
+}
+
+.alert-notice {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+  text-align: left;
+}
+
+#error_explanation {
+  padding: 15px 15px 15px 30px;
+  margin-bottom: 30px;
+}
+
+.logout {
+  margin-right: 33px !important;
+  color: aliceblue !important;
+}
+
+.margin-right {
+  margin-right: 33px !important;
+}
+
+#chat-box {
+  min-height: 100px;
+}
+
+#message-field {
+  width: 85%;
+}
+
+#message-body {
+  margin-bottom: 2px;
+}
+
+hr.msg {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#followers {
+  margin-left: -15px;
+}
+
+#form-box {
+  margin-left: -15px;
+}
+
+#post-btn {
+  margin-right: -35px;
+}
+
+.chat-header {
+  background-color: darkgray;
+  padding: 6px;
+  border: 1px solid rgb(182, 167, 167);
+}
+
+ul.userChat {
+  margin: 0;
+  padding: 10px 0;
+}
+
+ul.userChat li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+#chat-box {
+  padding: 10px 0;
+}
+.message-row{float: right;}
+.sender{
+  color: #7d8a7d;
+}

@@ -1,45 +1,67 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>WorkoutApp</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application'%>
-   
-  </head>
+<head>
+  <title>WorkoutApp</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-  <body>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application'%>
+
+</head>
+
+<body>
   <header role="banner">
-     <nav class="navbar navbar-inverse">
-      
-          <div class="navbar-header">
-          <%= link_to "Athletes Den", root_path, class: "navbar-brand" %>
-          </div>
-         
-          <%=form_tag(search_dashboards_path, class: "navbar-form navbar-left",role: "search") do %>
-            <div class="form-group">
-              <%= text_field_tag :search_name,nil, placeholder: "Search for friend", class: "form-control" %>
-            </div>
-            <%=submit_tag "Search", class: "btn btn-default" %>
-          <% end %>
-          <ul class="nav navbar-nav navbar-right">
-          <% if current_user %>
-                <li> <%=link_to current_user.full_name,"#" %></li>
-                <li><%=link_to "My lounge", user_exercises_path(current_user) %></li>
-                <li class="logout"><%= link_to("logout", destroy_user_session_path ,method: :delete ) %></li>
-            <% else %>
-                <li><%= link_to "Sign In", new_user_session_path %></li>
-                <li class="margin-right"><%= link_to "Sign Up", new_user_registration_path %></li>
-            <% end %>
-          </ul>
-        
-      </nav> 
-</header>
- 
-   <div class="container">
-    <%= yield %>
+    <nav class="navbar navbar-inverse">
+
+      <div class="navbar-header">
+        <%= link_to "Athletes Den", root_path, class: "navbar-brand" %>
+      </div>
+
+      <%=form_tag(search_dashboards_path, class: "navbar-form navbar-left",role: "search") do %>
+      <div class="form-group">
+        <%= text_field_tag :search_name,nil, placeholder: "Search for friend", class: "form-control" %>
+      </div>
+      <%=submit_tag "Search", class: "btn btn-default" %>
+      <% end %>
+      <ul class="nav navbar-nav navbar-right">
+        <% if current_user %>
+        <li>
+          <%=link_to current_user.full_name,"#" %>
+        </li>
+        <li>
+          <%=link_to "My lounge", user_exercises_path(current_user) %>
+        </li>
+        <li class="logout">
+          <%= link_to("logout", destroy_user_session_path ,method: :delete ) %>
+        </li>
+        <% else %>
+        <li>
+          <%= link_to "Sign In", new_user_session_path %>
+        </li>
+        <li class="margin-right">
+          <%= link_to "Sign Up", new_user_registration_path %>
+        </li>
+        <% end %>
+      </ul>
+
+    </nav>
+  </header>
+
+  <div class="<%=content_for?(:whole_page) ? 'container-fluid' : 'container' %>">
+    <div class="row">
+      <div class="col-md-12">
+        <% flash.each do |key,message|%>
+        <div class="text-center alert alert-<%= key=="notice" ? 'success': 'danger' %>">
+          <%=message%>
+        </div>
+        <% end %>
+        <%= yield %>
+        <%= yield :whole_page %>
+      </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
