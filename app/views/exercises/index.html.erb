@@ -1,8 +1,6 @@
 <%content_for(:whole_page) do %>
 <div class="col-md-8 col-xs-12">
-  <p id="notice">
-    <%= notice %>
-  </p>
+ 
 
   <% unless @exercises.empty? %>
 
@@ -33,9 +31,7 @@
         <td>
           <%= link_to 'Show', [current_user, exercise] %>
         </td>
-        <td>
-          <%= link_to 'Edit', [:edit, current_user, exercise] %>
-        </td>
+        
         <td>
           <%= link_to 'Destroy', [current_user, exercise], method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
@@ -96,7 +92,7 @@
   <div class="col-md-offset-3 col-md-6 friend_name">
     <%= link_to friend.full_name, friendship_path(current_user.current_friendship(friend)) %>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-3 follow_button">
     <div class="btn-unfollow">
       <%= link_to "Unfollow", friendship_path(current_user.current_friendship(friend)), method: :delete,
           data: {confirm: "Are you sure?"}, class: "btn btn-primary btn-sm link" %>

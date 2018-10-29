@@ -3,13 +3,12 @@ App.messages = App.cable.subscriptions.create "MessagesChannel",
     # Called when the subscription is ready for use on the server
     roomId=$("#chat-box").data("room-id")
     @checkIn(roomId)
-
+  
   disconnected: ->
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
-    alert("hello");
     posts=$(".message-row").length
     if posts == 10
       $(".mesage_row").first().remove()

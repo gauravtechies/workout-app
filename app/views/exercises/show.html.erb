@@ -16,7 +16,8 @@
             <strong>Workout details: </strong>
         </div>
         <div class="col-xs-8 text-right">
-            <%= truncate(@exercise.workout,length: 50) %>
+            <%#= truncate(@exercise.workout,length: 50) %>
+            <%= @exercise.workout %>
         </div>
     </div>
 
