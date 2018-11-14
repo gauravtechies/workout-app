@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_24_093515) do
+ActiveRecord::Schema.define(version: 2018_11_14_125429) do
+
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "exercise_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "exercise_id"
+    t.index ["category_id"], name: "index_exercise_categories_on_category_id"
+    t.index ["exercise_id"], name: "index_exercise_categories_on_exercise_id"
+  end
 
   create_table "exercises", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "duration_in_min"
@@ -63,6 +76,8 @@ ActiveRecord::Schema.define(version: 2018_10_24_093515) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "exercise_categories", "categories"
+  add_foreign_key "exercise_categories", "exercises"
   add_foreign_key "exercises", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
